@@ -33,7 +33,8 @@ import com.example.demo.entity.Person;
 
 @ActiveProfiles("test") 
 
-@Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, scripts = { "classpath:person-schema.sql",
+@Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, 
+scripts = { "classpath:person-schema.sql",
 "classpath:person-data.sql" })
 
 
@@ -52,11 +53,12 @@ public class PersonControllerIntegrationTest {
 		
 		Person testPerson = new Person ("Thor", 200, 150, 100, 100);
 		String testPersonAsJSON = this.mapper.writeValueAsString(testPerson);
-		RequestBuilder req = post("/Person/create").content(testPersonAsJSON).contentType
-				(MediaType.APPLICATION_JSON);
+		RequestBuilder req = post("/Person/create").content(testPersonAsJSON)
+				.contentType(MediaType.APPLICATION_JSON);
 
 		Person testSavedPerson = new Person(3, "Thor", 200, 150, 100, 100);
-		String testSavedPersonAsJSON = this.mapper.writeValueAsString(testSavedPerson);
+		String testSavedPersonAsJSON = this.mapper.writeValueAsString
+				(testSavedPerson);
 		ResultMatcher checkStatus = status().isCreated();
 		ResultMatcher checkBody = content().json(testSavedPersonAsJSON);
 		this.mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
@@ -67,10 +69,11 @@ public class PersonControllerIntegrationTest {
 	public void testCreate2() throws Exception {
 		Person testPerson = new Person("ag", 30, 20, 10, 40);
 		String testPersonAsJSON = this.mapper.writeValueAsString(testPerson);
-		RequestBuilder req = post("/Person/create").content(testPersonAsJSON).contentType
-				(MediaType.APPLICATION_JSON);
+		RequestBuilder req = post("/Person/create").content(testPersonAsJSON)
+				.contentType(MediaType.APPLICATION_JSON);
 		Person testSavedPerson = new Person(3, "ag", 30, 20, 10, 40);
-		String testSavedPersonAsJSON = this.mapper.writeValueAsString(testSavedPerson);
+		String testSavedPersonAsJSON = this.mapper.writeValueAsString
+				(testSavedPerson);
 		ResultMatcher checkStatus = status().isCreated();
 		ResultMatcher checkBody = content().json(testSavedPersonAsJSON);
 		this.mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
@@ -113,9 +116,11 @@ public class PersonControllerIntegrationTest {
         final Person newPerson = new Person("Adam", 120, 40, 40, 140);
         String newPersonAsJSON = this.mapper.writeValueAsString(newPerson);
         
-                this.mvc.perform(put("/Person/update/2").contentType(MediaType.APPLICATION_JSON)
+                this.mvc.perform(put("/Person/update/2").contentType
+                		(MediaType.APPLICATION_JSON)
                     .content(this.mapper.writeValueAsString(newPerson)))
-                	.andExpect(status().isAccepted()).andReturn().getRequest().getContentAsString();
+                	.andExpect(status().isAccepted()).andReturn().getRequest()
+                	.getContentAsString();
 
         Person result = this.mapper.readValue(newPersonAsJSON, Person.class);
         assertThat(result).isEqualTo(newPerson);

@@ -44,8 +44,8 @@ public class PersonControllerUnitTest {
 		Person.setId(id);
         List<Person> Persons = List.of(Person);
 		Mockito.when(this.service.readAll()).thenReturn(Persons);
-		ResponseEntity<List<Person>> response = new ResponseEntity<List<Person>>(Persons,
-				HttpStatus.OK);
+		ResponseEntity<List<Person>> response = new ResponseEntity<List<Person>>
+		(Persons, HttpStatus.OK);
 		assertThat(response).isEqualTo(this.controller.readAllPersons());
 		Mockito.verify(this.service, Mockito.times(1)).readAll();
 	}
@@ -73,7 +73,8 @@ public class PersonControllerUnitTest {
 	        Mockito.when(this.service.update(id,updated)).thenReturn(updated);
 	        ResponseEntity<Person> response = new ResponseEntity<Person>(updated, 
 	        		HttpStatus.ACCEPTED);
-	        assertThat(response).isEqualTo(this.controller.updatePerson(1L, newValues));
+	        assertThat(response).isEqualTo(this.controller.updatePerson
+	        		(1L, newValues));
 	        Mockito.verify(this.service, Mockito.times(1)).update(id,updated);
 	    }
 	

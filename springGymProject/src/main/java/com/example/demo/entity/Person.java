@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import java.util.Objects;
+import java.util.Objects; 
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
