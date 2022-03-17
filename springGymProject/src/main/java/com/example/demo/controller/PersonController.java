@@ -46,7 +46,7 @@ public class PersonController {
 	
 	//Update
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Person> updateDuck(@PathVariable long id, @RequestBody Person person){
+	public ResponseEntity<Person> updatePerson(@PathVariable long id, @RequestBody Person person){
 		return new ResponseEntity<Person>(this.service.update(id, person), HttpStatus.ACCEPTED);
 	}
 	
