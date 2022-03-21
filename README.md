@@ -2,7 +2,7 @@
 
 Why are we doing this?
 
-We are completeing this project to demonstrate the skills we have learnt throughout the software development course. The skills demonstrated include:
+We are completing this project to demonstrate the skills we have learnt throughout the software development course. The skills demonstrated include:
 
 -Agile & Project Management (Git, Jira)
 -Databases & Cloud Fundamentals (H2, MySQL)
